@@ -1,0 +1,89 @@
+$hoverColor: #ff8ecf;
+$shtatColor: #c1ecff;
+$pochasovkaColor: #cdffc7;
+$sovmeshenieColor: #fbffc7;
+
+.bg-stat {
+  background-color: darken($shtatColor, 10);
+}
+.bg-pochasovka {
+  background-color: darken($pochasovkaColor, 10);
+}
+
+.bg-sovmeshenie {
+  background-color: darken($sovmeshenieColor, 10);
+}
+
+@mixin table-row($color) {
+  td {
+    background-color: $color;
+    transition: all 0.2s;
+    text-align: center;
+    vertical-align: middle;
+
+    &:first-child {
+      text-align: left;
+      font-weight: bold;
+      border-right: 2px solid darken($color, 10);
+    }
+
+    &.is-hovered {
+      background-color: mix($color, $hoverColor, 65%);
+    }
+
+    &:hover {
+      background-color: mix($color, $hoverColor, 40%);
+    }
+
+    border-bottom: 2px solid darken($color, 10);
+  }
+
+  tr {
+    &:last-child {
+      td {
+        border-bottom: none;
+      }
+    }
+
+    &:nth-child(even) {
+      td {
+        background-color: lighten($color, 10);
+      }
+    }
+  }
+
+  th {
+    font-size: 1.25rem;
+    background-color: darken($color, 10);
+    border-bottom: 2px solid darken($color, 60);
+    border-top: 2px solid darken($color, 60);
+  }
+}
+
+.table-row-stat {
+  @include table-row($shtatColor);
+}
+
+.table-row-pochasovka {
+  @include table-row($pochasovkaColor);
+}
+
+.table-row-sovmeshenie {
+  @include table-row($sovmeshenieColor);
+}
+
+table > thead {
+  th.active {
+    background-color: $hoverColor;
+  }
+}
+
+.action-selector {
+  position: absolute;
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-color: rgba(white, 50%);
+  box-shadow: 0 0 4px silver;
+  z-index: 1000;
+  width: 300px;
+}
