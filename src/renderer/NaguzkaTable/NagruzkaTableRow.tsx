@@ -26,7 +26,7 @@ const NagruzkaTableRow = observer(({row, typeInfo}: {
 
   return (
     <tr className={typeInfo.klass} key={row.title} onMouseOver={() => store.setHoveredRow(row)}>
-      <td className={classNames({'is-hovered': row === store.hoveredRow})}>{row.title}
+      <td className={classNames({'is-hovered': row === store.hoveredRow})}  style={{width: "400px"}}>{row.title}
         <span className="badge btn-info ms-2">{row.students}</span>
       </td>
       {
@@ -54,6 +54,7 @@ const NagruzkaTableRow = observer(({row, typeInfo}: {
           const isActive = store.moveCellInfo?.row === row && store.moveCellInfo.cellType === cellType;
           return (
             <td
+              style={{width: "calc((100% - 400px) / 17)"}}
               className={classNames("position-relative", {'is-hovered': cellType === store.hoveredCellType || row === store.hoveredRow})}
               key={x}
               onMouseOver={() => store.setHoveredCellType(cellType)}

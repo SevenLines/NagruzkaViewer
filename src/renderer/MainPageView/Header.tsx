@@ -14,15 +14,15 @@ const Header = observer(() => {
   return (
     <div className="d-flex align-items-center">
         <div className="p-2">
-          <h4 className="mb-0 ">
-            <span>Всего: <span>{totalHours}</span>
+          <h4 className="mb-1 d-flex align-items-center">
+            <span>Всего: <span>{totalHours}</span></span>
             {totalShtat > 0 &&
               <span className="badge bg-stat text-black ms-1">{totalShtat}</span>}
             {totalChasovik > 0 &&
               <span className="badge bg-pochasovka text-black ms-1">{totalChasovik}</span>}
             {totalSovmishenie > 0 &&
               <span className="badge bg-sovmeshenie text-black ms-1">{totalSovmishenie}</span>}
-            </span>
+
           </h4>
           <span className="badge bg-info">
             <span>Аудиторная: </span>
