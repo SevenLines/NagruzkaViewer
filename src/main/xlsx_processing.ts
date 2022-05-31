@@ -57,10 +57,16 @@ export async function loadXls(filename: string, sem: number): Promise<Array<Nagr
       const match = prepRegex.exec(firstCell.value);
       if (match) {
         [, teacher] = match;
+        console.log(`${i} ${teacher}`)
 
         rows = [];
         i += 3;
       } else if (firstCell.value.includes('Итого по ставке Совмещение')) {
+        items = items.concat(
+          rows.map(processRowWrapperFunc(teacher, NagruzkType.Sovmeshenie, sem))
+        );
+        rows = [];
+      } else if (firstCell.value.includes('Итого по ставке Совместитель')) {
         items = items.concat(
           rows.map(processRowWrapperFunc(teacher, NagruzkType.Sovmeshenie, sem))
         );
@@ -78,6 +84,7 @@ export async function loadXls(filename: string, sem: number): Promise<Array<Nagr
       } else if (firstCell.value.includes('Итого')) {
         rows = [];
       } else {
+        console.log(firstCell.value)
         rows.push(row);
       }
     }

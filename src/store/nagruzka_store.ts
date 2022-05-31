@@ -184,12 +184,14 @@ export default class NagruzkaStore {
     return _(this.nagruzka)
       .map((x) => x.teacher)
       .uniq()
+      .sort()
       .value();
   }
 
   get selectedNagruzka(): Array<NagruzkaLine> {
     return _(this.nagruzka)
       .filter((x) => x.teacher === this.selectedTeacher)
+      .orderBy((x) => x.title)
       .value();
   }
 
@@ -207,7 +209,7 @@ export default class NagruzkaStore {
       x.sem === sem && !x.title.includes('(ПД)')
     ).sumBy(x => x.hLect + x.hLab + x.hPrac), 2)
     return {
-      total: sovmeshenie + chasovik + shtat,
+      total: round(sovmeshenie + chasovik + shtat, 2),
       sovmeshenie,
       chasovik,
       shtat,
