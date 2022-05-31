@@ -7,8 +7,10 @@ const MainPageView = observer(() => {
   return (
     <div className="container-fluid vh-100 d-flex flex-column">
       <Header/>
-      <NagruzkaTableHeader />
-      <div className="flex-grow-1" style={{"overflowY": "auto"}}>
+      <div style={{marginRight: "17px"}}>
+        <NagruzkaTableHeader />
+      </div>
+      <div className="flex-grow-1" style={{"overflowY": "scroll"}}>
         <NagruzkaTable/>
       </div>
     </div>
